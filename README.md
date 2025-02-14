@@ -70,7 +70,7 @@ This project is a **React (TypeScript)** quiz application where users toggle bet
 
 ## Limitations
 
-- **No Question Randomization:** Questions appear in a fixed order.
+- **No Question Randomization:** Currently, the questions appear in a fixed order. Although an attempt was made to implement randomization of both the questions and their options, it is not fully functional. If you are interested in reviewing the attempt and possibly contributing to fixing the randomization functionality, please check out the `randomise-quiz` branch. This branch contains the code and logic used in the attempt to shuffle the questions and options.
 - **Static Question Set:** Questions are hardcoded in the codebase.
 - **No Backend Integration:** Data is managed on the client side.
 - **Testing:** Unit test not configured correctly.
