@@ -4,11 +4,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* Full height */
-  width: 100vw; /* Full width */
-  background: linear-gradient(to bottom, #F6B868, #EE6B2D); /* Initial orange gradient */
+  height: 100vh;
+  width: 100vw; 
   transition: background 0.5s ease-in-out;
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
 /* Question title */
@@ -27,23 +26,21 @@
   gap: 20px;
   width: 80%;
   max-width: 900px;
-  z-index: 1;
 }
 
 /* Each row of toggle buttons */
 .option-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 100px;
-    height: auto;
-    border: 2px solid white;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
-    z-index: 1; /* Ensure the border is at the back */
-    flex-wrap: wrap; /* Allow wrapping */
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 100px;
+  height: auto;
+  border: 2px solid white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
 
 /* Toggle button design */
 .toggle-button {
@@ -59,7 +56,6 @@
   font-weight: 700;
   font-size: 24px;
   text-align: center;
-  z-index: 3;
   border: none;
   outline: none;
   white-space: normal;
@@ -67,39 +63,43 @@
 
 /* Selected button effect */
 .toggle-button.selected {
-    color: #9F938B;
-    z-index: 3;
-  }
-  
-  /* Locked selected button effect */
-  .toggle-button.locked {
-    background: #A5E7E2;
-    color: #4CAD94;
-    z-index: 3;
-  }
-  
-  /* Circle highlighting the selected choice */
-  .highlight-circle {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    background: #F8CAA3;
-    border-radius: 100px;
-    z-index: 3;
-  }
+  color: #9f938b;
+  z-index: 1;
+}
 
-  .highlight-circle.locked {
-    background: #A5E7E2;
-  }
- 
+/* Locked selected button effect */
+.toggle-button.locked {
+  background: #a5e7e2;
+  color: #4cad94;
+
+}
+
+/* Circle highlighting the selected choice */
+.highlight-circle {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  background: #f8caa3;
+  border-radius: 100px;
+}
+
+/* Locked circle highlighting the correct choice */
+.highlight-circle.locked {
+  background: #a5e7e2;
+}
+
 /* Final correct state */
 .result-message {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    z-index: 3;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+/* Smaller circle for three options */
+.option-row.three-options .highlight-circle {
+  width: 33.3%;
 }
 
 /* Responsive design for mobile and tablet */
@@ -109,31 +109,39 @@
   }
   .toggle-button {
     font-size: 23px;
-    padding: 15px;
-    height: auto; /* Allow height to adjust based on content */
+    padding: 15px; 
+    height: auto;
   }
   .option-row {
-    height: auto; /* Allow height to adjust based on content */
+    height: auto;
   }
 }
 
-@media (max-width: 480px) {
+/* Specific styles for 320px to 480px resolution */
+@media (max-width: 480px) and (min-width: 320px) {
   .question-title {
-    font-size: 24px;
+    font-size: 20px;
   }
   .toggle-button {
-    font-size: 18px;
-    padding: 10px;
-    height: auto; /* Allow height to adjust based on content */
+    font-size: 16px;
+    padding: 8px;
+    height: auto;
+  }
+  .toggle-button {
+    width: 100%;
   }
   .option-row {
-    flex-direction: column; /* Stack buttons vertically */
-    height: auto; /* Allow height to adjust based on content */
+    flex-direction: column;
+    height: auto;
     border-radius: 24px;
   }
   .highlight-circle {
     width: 100%;
     height: 50%;
     border-radius: 0;
+  }
+  .option-row.three-options .highlight-circle {
+    height: 33.3%;
+    width: 100%;
   }
 }

@@ -1,83 +1,143 @@
-import React, { useState, useEffect } from "react";
-import Question from "../question/Question";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./quiz.css";
+import React, { useState, useEffect } from 'react';
+import Question from '../question/Question';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './quiz.css';
 
+// Quiz component
 const Quiz: React.FC = () => {
+  // Define the questions
   const questions = [
     {
-      title: "An animal cell contains:",
+      title: 'An animal cell contains:',
       options: [
-        { left: "Cell wall", right: "Ribosomes", correct: "Ribosomes" },
-        { left: "Cytoplasm", right: "Chloroplast", correct: "Cytoplasm" },
-        { left: "Partially permeable membrane", right: "Impermeable membrane", correct: "Partially permeable membrane" },
-        { left: "Cellulose", right: "Mitochondria", correct: "Mitochondria" },
+        {
+          left: 'Cell wall',
+          middle: 'Nucleus',
+          right: 'Ribosomes',
+          correct: 'Ribosomes',
+        },
+        { left: 'Cytoplasm', right: 'Chloroplast', correct: 'Cytoplasm' },
+        {
+          left: 'Partially permeable membrane',
+          right: 'Impermeable membrane',
+          correct: 'Partially permeable membrane',
+        },
+        { left: 'Cellulose', right: 'Mitochondria', correct: 'Mitochondria' },
       ],
     },
     {
-      title: "Which planets are in our Solar System?",
+      title: 'Which planets are in our Solar System?',
       options: [
-        { left: "Mars", right: "Galaxy", correct: "Mars" },
-        { left: "Serena", right: "Venus", correct: "Venus" },
-        { left: "Mercury", right: "Freddie", correct: "Mercury" },
-        { left: "Jupiter", right: "Saturn", correct: "Jupiter" },
+        { left: 'Mars', middle: 'Milky Way', right: 'Galaxy', correct: 'Mars' },
+        { left: 'Jupiter', right: 'Uranose', correct: 'Jupiter' },
+        {
+          left: 'Rocky',
+          middle: 'Mercury',
+          right: 'Freddie',
+          correct: 'Mercury',
+        },
+        {
+          left: 'Venus',
+          middle: 'Williams',
+          right: 'Tennis',
+          correct: 'Venus',
+        },
       ],
     },
     {
-      title: "What are the ideal conditions inside an office?",
+      title: 'What are the ideal conditions inside an office?',
       options: [
-        { left: "good pay", right: "bad pay", correct: "good pay" },
-        { left: "lot of meetings", right: "less meetings", correct: "less meetings" },
-        { left: "free coffee", right: "expensive coffee", correct: "free coffee" },
-        { left: "bear in office", right: "dog in office", correct: "dog in office" },
+        {
+          left: 'Good pay',
+          middle: 'Decent Pay',
+          right: 'Bad pay',
+          correct: 'Good pay',
+        },
+        {
+          left: 'Lots of meetings',
+          right: 'Less meetings',
+          correct: 'Less meetings',
+        },
+        {
+          left: 'Free coffee',
+          middle: 'No coffee',
+          right: 'Expensive coffee',
+          correct: 'Free coffee',
+        },
+        {
+          left: 'Bear in office',
+          right: 'Dog in office',
+          correct: 'Dog in office',
+        },
       ],
     },
   ];
 
+  // State hooks
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionStates, setQuestionStates] = useState(
     questions.map((question) => ({
-      selections: question.options.map(() => "left"),
+      selections: question.options.map(() => 'left'),
       locked: false,
     }))
   );
   const [allCorrect, setAllCorrect] = useState(false);
 
+  // Show a toast message when all questions are correct
   useEffect(() => {
     if (allCorrect) {
-      toast.success("All questions are correct!");
+      toast.success('All questions are correct!', {
+        className: 'toast-success',
+      });
     }
   }, [allCorrect]);
 
-  const handleSelectionChange = (index: number, selections: string[], locked: boolean) => {
+  // Handle selection changes
+  const handleSelectionChange = (
+    index: number,
+    selections: string[],
+    locked: boolean
+  ) => {
     const newQuestionStates = [...questionStates];
     newQuestionStates[index] = { selections, locked };
     setQuestionStates(newQuestionStates);
 
+    // Check if all questions are correct
     const allQuestionsCorrect = newQuestionStates.every((state, i) =>
-      state.selections.every((sel, j) =>
-        (sel === "left" ? questions[i].options[j].left : questions[i].options[j].right) === questions[i].options[j].correct
+      state.selections.every(
+        (sel, j) =>
+          (sel === 'left'
+            ? questions[i].options[j].left
+            : sel === 'middle'
+            ? questions[i].options[j].middle
+            : questions[i].options[j].right) ===
+          questions[i].options[j].correct
       )
     );
     setAllCorrect(allQuestionsCorrect);
   };
 
   return (
-    <div className="quiz-container">
+    <div className='quiz-container'>
+      {/* Toast notifications container */}
       <ToastContainer />
+      {/* Render the current question */}
       <Question
         title={questions[currentQuestionIndex].title}
         options={questions[currentQuestionIndex].options}
         selections={questionStates[currentQuestionIndex].selections}
         locked={questionStates[currentQuestionIndex].locked}
-        onSelectionChange={(selections, locked) => handleSelectionChange(currentQuestionIndex, selections, locked)}
+        onSelectionChange={(selections, locked) =>
+          handleSelectionChange(currentQuestionIndex, selections, locked)
+        }
       />
-      <div className="navigation-buttons">
+      {/* Navigation buttons to switch between questions */}
+      <div className='navigation-buttons'>
         {questions.map((_, index) => (
           <button
             key={index}
-            className={`nav-button ${currentQuestionIndex === index ? "active" : ""}`}
+            className={`nav-button ${currentQuestionIndex === index ? 'active' : ''}`}
             onClick={() => setCurrentQuestionIndex(index)}
           >
             Question {index + 1}

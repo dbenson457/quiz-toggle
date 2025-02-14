@@ -1,3 +1,4 @@
+/* Container for the quiz */
 .quiz-container {
   display: flex;
   flex-direction: column;
@@ -7,14 +8,16 @@
   width: 100vw;
   background: transparent;
   transition: background 0.5s ease-in-out;
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
 }
 
+/* Styling for the result message */
 .quiz-result {
   text-align: center;
   background: transparent;
 }
 
+/* Container for navigation buttons */
 .navigation-buttons {
   display: flex;
   gap: 10px;
@@ -24,6 +27,7 @@
   bottom: 20px;
 }
 
+/* Styling for the navigation buttons */
 .nav-button {
   padding: 10px 20px;
   font-size: 16px;
@@ -36,10 +40,44 @@
   transition: background 0.3s ease-in-out;
 }
 
+/* Styling for the active navigation button */
 .nav-button.active {
   background: rgba(255, 255, 255, 0.2);
 }
 
+/* Hover effect for the navigation buttons */
 .nav-button:hover {
   background: rgba(255, 255, 255, 0.1);
+}
+
+/* Styling for the toast */
+.toast-success {
+  background: white;
+  color: #59CADA !important;
+}
+/* Make the toast tick icon blue */
+.toast-success .Toastify__toast-icon svg {
+  fill: #59CADA !important;
+}
+/* Make the toast progress bar blue */
+.toast-success .Toastify__progress-bar {
+  background-color: #59CADA !important;
+}
+/* Make the toast progress bar light blue */
+.Toastify__progress-bar--bg {
+  background-color: #76E0C2 !important;
+}
+
+/* Specific styles for 320px to 480px resolution */
+@media (max-width: 480px) and (min-width: 320px) {
+  .navigation-buttons {
+    gap: 5px;
+    margin-top: 10px;
+  }
+  .nav-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+  }
 }
