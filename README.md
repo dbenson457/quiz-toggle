@@ -62,8 +62,8 @@ This project is a **React (TypeScript)** quiz application where users toggle bet
 
 ## Assumptions
 
-- Each question has exactly **two options**.
-- Users can select only **one option per question**.
+- Each question has exactly **4 options**.
+- Users can select only **one toggle per option**.
 - The quiz contains a **fixed set of questions**.
 - The background color changes **proportionally** based on correct answers.
 - The quiz **locks** only when **all answers are correct**.
