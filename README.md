@@ -7,7 +7,7 @@ This project is a **React (TypeScript)** quiz application where users toggle bet
 ##  Features Implemented
 
 - **Dynamic Background Color:** Transitions from orange to blue as more correct answers are selected.
-- **Toggle Button Interaction:** Users can select between multiple options per question.
+- **Toggle Button Interaction:** Users can select between toggles per question.
 - **Answer Locking Mechanism:** The question locks when all correct answers are chosen.
 - **Component-Based Architecture:** Uses modular React components.
 - **Scoped CSS Styling:** Each component has its own CSS file for maintainability.
