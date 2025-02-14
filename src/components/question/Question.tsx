@@ -150,7 +150,7 @@ const Question: React.FC<QuestionProps> = ({
         ))}
       </div>
       {/* Display result message */}
-      <p className="result-message">{locked ? "The answer is correct" : "The answer is incorrect"}</p>
+      <p className="result-message">{locked ? "The answer is correct!" : "The answer is incorrect"}</p>
     </div>
   );
 };
