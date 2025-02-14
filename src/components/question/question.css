@@ -1,0 +1,139 @@
+/* Full-page styling */
+.question-toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full height */
+  width: 100vw; /* Full width */
+  background: linear-gradient(to bottom, #F6B868, #EE6B2D); /* Initial orange gradient */
+  transition: background 0.5s ease-in-out;
+  font-family: "Arial", sans-serif;
+}
+
+/* Question title */
+.question-title {
+  font-size: 40px;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+/* Container for options */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+  max-width: 900px;
+  z-index: 1;
+}
+
+/* Each row of toggle buttons */
+.option-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 100px;
+    height: auto;
+    border: 2px solid white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Drop shadow */
+    z-index: 1; /* Ensure the border is at the back */
+    flex-wrap: wrap; /* Allow wrapping */
+  }
+
+/* Toggle button design */
+.toggle-button {
+  flex: 1;
+  transition: all 0.3s ease-in-out;
+  background: transparent;
+  color: white;
+  width: 330px;
+  height: 80px;
+  justify-content: space-between;
+  border-radius: 100px;
+  padding: 21px;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  z-index: 3;
+  border: none;
+  outline: none;
+  white-space: normal;
+}
+
+/* Selected button effect */
+.toggle-button.selected {
+    color: #9F938B;
+    z-index: 3;
+  }
+  
+  /* Locked selected button effect */
+  .toggle-button.locked {
+    background: #A5E7E2;
+    color: #4CAD94;
+    z-index: 3;
+  }
+  
+  /* Circle highlighting the selected choice */
+  .highlight-circle {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: #F8CAA3;
+    border-radius: 100px;
+    z-index: 3;
+  }
+
+  .highlight-circle.locked {
+    background: #A5E7E2;
+  }
+ 
+/* Final correct state */
+.result-message {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    z-index: 3;
+}
+
+/* Responsive design for mobile and tablet */
+@media (max-width: 768px) {
+  .question-title {
+    font-size: 32px;
+  }
+  .toggle-button {
+    font-size: 23px;
+    padding: 15px;
+    height: auto; /* Allow height to adjust based on content */
+  }
+  .option-row {
+    height: auto; /* Allow height to adjust based on content */
+  }
+}
+
+@media (max-width: 480px) {
+  .question-title {
+    font-size: 24px;
+  }
+  .toggle-button {
+    font-size: 18px;
+    padding: 10px;
+    height: auto; /* Allow height to adjust based on content */
+  }
+  .option-row {
+    flex-direction: column; /* Stack buttons vertically */
+    height: auto; /* Allow height to adjust based on content */
+    border-radius: 24px;
+  }
+  .highlight-circle {
+    width: 100%;
+    height: 50%;
+    border-radius: 0;
+  }
+}
