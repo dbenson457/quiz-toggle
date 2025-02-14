@@ -3,11 +3,12 @@ import Question from '../question/Question';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './quiz.css';
+import { shuffleArray } from '../../utils/shuffle';
 
 // Quiz component
 const Quiz: React.FC = () => {
   // Define the questions
-  const questions = [
+  const initialQuestions = [
     {
       title: 'An animal cell contains:',
       options: [
@@ -75,14 +76,24 @@ const Quiz: React.FC = () => {
   ];
 
   // State hooks
+  const [questions, setQuestions] = useState(initialQuestions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questionStates, setQuestionStates] = useState(
-    questions.map((question) => ({
+    initialQuestions.map((question) => ({
       selections: question.options.map(() => 'left'),
       locked: false,
     }))
   );
   const [allCorrect, setAllCorrect] = useState(false);
+
+  // Shuffle questions and options on mount
+  useEffect(() => {
+    const shuffledQuestions = shuffleArray(initialQuestions).map((question) => ({
+      ...question,
+      options: shuffleArray(question.options),
+    }));
+    setQuestions(shuffledQuestions);
+  }, []);
 
   // Show a toast message when all questions are correct
   useEffect(() => {
